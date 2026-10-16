@@ -1,0 +1,20 @@
+SYNTHETIC SAMPLE DOCUMENT. Not real business data.
+
+Pricing review, January to February 2026
+Effective 2026-02-27, version 1.0
+
+Promotions run in the period
+PROMO-001: 10 percent off Orange Juice 1L, stores, 2026-01-19 to 2026-01-25.
+PROMO-002: 50 cents off Corn Flakes 500g, stores, 2026-02-02 to 2026-02-08.
+PROMO-003: 15 percent off Cola 2L, stores, 2026-02-16 to 2026-02-22.
+
+Competitor checks
+Shelf and web prices were checked for FreshMart and ValueBarn on the dates
+logged in the competitor price file. FreshMart was cheaper than us on orange
+juice and cola in the weeks checked. ValueBarn was slightly cheaper on corn
+flakes.
+
+Data limits
+Stock levels, weather and seasonal events were not recorded for this period.
+A sales increase during a promotion week does not prove the promotion caused
+it. Online prices were not changed during the period.

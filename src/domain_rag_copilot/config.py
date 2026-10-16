@@ -1,11 +1,13 @@
 import os
 from dataclasses import dataclass, field
 from pathlib import Path
+
 from dotenv import dotenv_values
 
 # this file is src/domain_rag_copilot/config.py, so the project folder is 2 levels up
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 ENV_FILE = PROJECT_ROOT / ".env"
+
 LOG_LEVELS = ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
 LLM_PROVIDERS = ["unset", "openai", "anthropic", "ollama"]
 EMBEDDING_PROVIDERS = ["unset", "openai", "sentence_transformers", "ollama"]
@@ -25,11 +27,18 @@ class Settings:
     llm_api_key: str = field(default="", repr=False)
     embedding_api_key: str = field(default="", repr=False)
 
+
 def check_choice(name, value, allowed):
     if value not in allowed:
         raise ValueError(f"{name} is '{value}' but it must be one of: {', '.join(allowed)}")
 
+
 def load_settings(env_file=ENV_FILE, environ=None):
+    """Read settings from the .env file and the environment.
+
+    Real environment variables win over the .env file.
+    Tests pass env_file=None and their own environ dict.
+    """
     values = {}
     if env_file is not None and Path(env_file).is_file():
         values.update(dotenv_values(env_file))

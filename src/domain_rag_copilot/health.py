@@ -1,5 +1,7 @@
 import sys
+
 from domain_rag_copilot import __version__
+
 # providers that need an api key to work
 NEEDS_KEY = ["openai", "anthropic"]
 
@@ -13,6 +15,7 @@ def show_provider(label, provider, model, api_key):
         print(f"  note: {label} model is empty")
     if provider in NEEDS_KEY and not api_key:
         print(f"  note: {label} api key is empty")
+
 
 def run_health_check(settings):
     """Print a short status report. Returns True if nothing is broken."""

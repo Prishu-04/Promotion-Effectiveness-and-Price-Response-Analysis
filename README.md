@@ -1,9 +1,9 @@
 # Domain RAG Copilot: Promotion Effectiveness and Price-Response Analysis
 
-**Project ID:** P7-034\
-**Domain:** Pricing, Promotions, Retail, Media & Consumer\
-**Project type:** Retrieval-Augmented Generation (RAG) + structured business analytics\
-**Build approach:** Incremental, stage-by-stage implementation with Claude\
+**Project ID:** P7-034  
+**Domain:** Pricing, Promotions, Retail, Media & Consumer  
+**Project type:** Retrieval-Augmented Generation (RAG) + structured business analytics  
+**Build approach:** Incremental, stage-by-stage implementation with Claude  
 **Primary language:** Python
 
 This README is the project's **source of truth**. Attach it to every Claude stage prompt so Claude understands the complete goal, the architecture, what has already been built, and how the requested stage fits into the rest of the application.
@@ -12,7 +12,7 @@ This README is the project's **source of truth**. Attach it to every Claude stag
 
 ## Build status and setup
 
-Stage 1 (project foundation) is built. Stages 2 to 11 are not started.
+Stages 1 (project foundation) and 2 (data model and sample data) are built. Stages 3 to 11 are not started.
 
 Python 3.11 or 3.12. Dependencies are in `pyproject.toml`. Open decisions are in `docs/decisions.md`.
 
@@ -30,10 +30,11 @@ Without conda, use `python -m venv .venv` and activate it (`source .venv/bin/act
 
 ```bash
 python -m domain_rag_copilot
+python -m domain_rag_copilot.schemas
 pytest
 ```
 
-The first command prints a short status report and ends with `status: ok`. The second should show all tests passed. No API key is needed.
+The first command prints a short status report and ends with `status: ok`. The second checks the synthetic sample data and ends with `all checks passed`. The last should show all tests passed. No API key is needed.
 
 ### Settings
 
@@ -49,8 +50,10 @@ src/domain_rag_copilot/
   config.py         Settings class and load_settings()
   logging_setup.py  setup_logging()
   health.py         run_health_check()
-tests/unit/         smoke test and config tests
-data/sample/        sample data goes here (stage 2)
+  schemas/          stage 2: record classes, checks and the sample loader
+tests/unit/         smoke, config, schema and sample data tests
+data/sample/        synthetic csv files and documents/*.txt
+docs/data_dictionary.md   columns, rules, keys and relationships
 docs/decisions.md   decisions and open questions
 ```
 
@@ -174,7 +177,7 @@ The initial project should support the following input categories. Use synthetic
 ### Structured inputs
 
 | Input | Typical fields | Purpose |
-| --- | --- | --- |
+|---|---|---|
 | Products | `product_id` or `sku`, name, category | Identify products consistently |
 | Prices | product/SKU, date, price, currency, region/channel where relevant | Track regular and observed prices |
 | Promotions | `promotion_id`, product/SKU, start/end dates, discount type/value, region/channel | Define the promotion being analyzed |
@@ -211,7 +214,7 @@ Preserve original source identity through parsing, chunking, retrieval, rerankin
 Use a simple, modular stack and avoid adding technologies without a demonstrated need.
 
 | Area | Initial choice | Notes |
-| --- | --- | --- |
+|---|---|---|
 | Language | Python | Main application and analytics code |
 | RAG orchestration | LangChain | Keep orchestration separate from business logic |
 | Vector store | Chroma | Persistent local vector index for the initial implementation |
@@ -442,15 +445,15 @@ Do not create empty modules just to match the diagram. Add files when a stage ne
 
 These rules apply to all stages.
 
- 1. **Preserve the architecture:** Reuse earlier modules and contracts instead of rebuilding the application independently at every stage.
- 2. **Keep responsibilities separated:** Ingestion loads/validates; retrieval finds evidence; analytics calculates; routing orchestrates; generation explains; guardrails validate; the interface presents.
- 3. **Prefer small, testable functions:** Avoid placing the entire application in one file or one oversized function.
- 4. **Use explicit contracts:** Define schemas for inputs and outputs that cross module boundaries. Do not pass ambiguous free-form objects when a clear model is practical.
- 5. **Make configuration explicit:** Use environment variables and configuration files for secrets and provider settings. Commit placeholders only, never secrets.
- 6. **Preserve provenance:** Carry source/chunk identifiers and metadata until the response is presented and evaluated.
- 7. **Make failures safe and visible:** Validate inputs; handle missing data, unavailable providers, empty retrieval, malformed responses, and zero denominators. Do not silently substitute invented defaults.
- 8. **Test incrementally:** Add or update tests with each feature. A later stage does not excuse an earlier broken contract.
- 9. **Avoid needless dependencies:** Add a library only when it materially supports a requirement; explain why it is needed.
+1. **Preserve the architecture:** Reuse earlier modules and contracts instead of rebuilding the application independently at every stage.
+2. **Keep responsibilities separated:** Ingestion loads/validates; retrieval finds evidence; analytics calculates; routing orchestrates; generation explains; guardrails validate; the interface presents.
+3. **Prefer small, testable functions:** Avoid placing the entire application in one file or one oversized function.
+4. **Use explicit contracts:** Define schemas for inputs and outputs that cross module boundaries. Do not pass ambiguous free-form objects when a clear model is practical.
+5. **Make configuration explicit:** Use environment variables and configuration files for secrets and provider settings. Commit placeholders only, never secrets.
+6. **Preserve provenance:** Carry source/chunk identifiers and metadata until the response is presented and evaluated.
+7. **Make failures safe and visible:** Validate inputs; handle missing data, unavailable providers, empty retrieval, malformed responses, and zero denominators. Do not silently substitute invented defaults.
+8. **Test incrementally:** Add or update tests with each feature. A later stage does not excuse an earlier broken contract.
+9. **Avoid needless dependencies:** Add a library only when it materially supports a requirement; explain why it is needed.
 10. **Keep the project runnable:** Update setup instructions when commands, modules, environment variables, or dependencies change.
 11. **Do not overclaim:** Report only tests and evaluations that actually ran. Separate observed facts from assumptions and causal claims.
 12. **Explain changes:** When changing an existing contract or architecture decision, state what changed, why it was necessary, and which earlier stages are affected.
@@ -480,17 +483,11 @@ For the requested stage, Claude should:
 Before advancing, confirm the applicable items:
 
 - [ ] Required output for the current stage exists.
-
 - [ ] The app or module runs as expected for this stage.
-
 - [ ] Tests or manual verification steps are documented and have been executed where possible.
-
 - [ ] New configuration variables and dependencies are documented.
-
 - [ ] Existing module contracts and earlier working functionality still hold.
-
 - [ ] Limitations or unresolved errors are explicitly listed.
-
 - [ ] A concise handoff summary is available for the next stage.
 
 ### If Claude lacks the latest project state

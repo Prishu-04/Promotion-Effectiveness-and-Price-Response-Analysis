@@ -8,7 +8,7 @@ dynamic = ["version"]
 description = "P7-034 Domain RAG Copilot: promotion effectiveness and price-response analysis"
 readme = "README.md"
 # python 3.13 is left out until the later libraries (chroma etc.) are checked on it
-requires-python = "==3.14"
+requires-python = ">=3.11,<3.13"
 dependencies = [
     "python-dotenv>=1.0",
 ]

@@ -1,0 +1,18 @@
+SYNTHETIC SAMPLE DOCUMENT. Not real business data.
+
+Promotion brief: PROMO-001, Orange Juice 1L
+Effective 2026-01-12, version 1.0
+
+Plan
+We will run 10 percent off Orange Juice 1L (SunGrove) in North region stores
+for the week of 2026-01-19 to 2026-01-25. The online channel is not part of
+this promotion and keeps its regular price. No loyalty card is needed.
+
+Reason
+The category team wants to test a mid-sized discount on a high-volume item.
+Shelf signs will show the discounted price.
+
+Risks noted by the team
+FreshMart was seen with a lower shelf price the week before the promotion
+starts. Part of any sales change could come from shoppers switching back from
+FreshMart, so the result should not be read as the discount alone.

@@ -1,0 +1,15 @@
+SYNTHETIC SAMPLE DOCUMENT. Not real business data.
+
+Promotion guidelines
+Effective 2025-12-01, version 2.1
+
+1. A promotion normally runs for 7 days, Monday to Sunday.
+2. A percent discount should not be more than 25 percent without approval from
+   the pricing manager.
+3. Every promotion needs an ID, a product, a start date, an end date and the
+   region and channel it applies to.
+4. Competitor prices are logged with a date and a source. Prices without a
+   source are not used in reports.
+5. The same price applies to every customer in a region and channel. Prices are
+   not set for individual customers.
+6. Pricing staff review any answer from the copilot before acting on it.

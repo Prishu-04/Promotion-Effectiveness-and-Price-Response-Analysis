@@ -1,0 +1,4 @@
+document_id,title,source_name,source_type,source_path,is_synthetic,effective_date,version,product_ids,promotion_ids,region,channel
+DOC-001,Promotion brief: orange juice 10 percent off,doc_001_promo_brief_synthetic.txt,promotion_brief,documents/doc_001_promo_brief_synthetic.txt,true,2026-01-12,1.0,P001,PROMO-001,North,store
+DOC-002,"Pricing review, January to February 2026",doc_002_pricing_review_synthetic.txt,pricing_report,documents/doc_002_pricing_review_synthetic.txt,true,2026-02-27,1.0,P001|P002|P003,PROMO-001|PROMO-002|PROMO-003,North,
+DOC-003,Promotion guidelines,doc_003_promo_guidelines_synthetic.txt,policy,documents/doc_003_promo_guidelines_synthetic.txt,true,2025-12-01,2.1,,,,

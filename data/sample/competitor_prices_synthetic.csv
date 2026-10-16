@@ -1,0 +1,7 @@
+observation_id,competitor_name,competitor_product,observed_price,currency,observation_date,source,product_id,region,channel
+CMP-001,FreshMart,Orange Juice 1L,3.10,USD,2026-01-12,synthetic shelf check,P001,North,store
+CMP-002,FreshMart,Orange Juice 1L,3.15,USD,2026-01-26,synthetic shelf check,P001,North,store
+CMP-003,ValueBarn,Corn Flakes 500g,4.40,USD,2026-01-28,synthetic shelf check,P002,North,store
+CMP-004,FreshMart,Cola 2L,2.30,USD,2026-02-09,synthetic shelf check,P003,,store
+CMP-005,ValueBarn,Cola 2L,2.45,USD,2026-02-16,synthetic web price,P003,North,
+CMP-006,ValueBarn,Store brand granola 500g,3.80,USD,2026-02-02,synthetic web price,,,

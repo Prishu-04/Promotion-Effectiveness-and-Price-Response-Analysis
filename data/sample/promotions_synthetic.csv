@@ -1,0 +1,4 @@
+promotion_id,product_id,start_date,end_date,discount_type,discount_value,currency,region,channel,description
+PROMO-001,P001,2026-01-19,2026-01-25,percent,10,,North,store,"10 percent off orange juice, stores only"
+PROMO-002,P002,2026-02-02,2026-02-08,fixed_amount,0.50,USD,North,store,50 cents off corn flakes
+PROMO-003,P003,2026-02-16,2026-02-22,percent,15,,North,store,15 percent off cola
