@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "domain-rag-copilot"
+dynamic = ["version"]  # single source of truth: __version__ in src/domain_rag_copilot/__init__.py
+description = "P7-034 Domain RAG Copilot: promotion effectiveness and price-response analysis"
+readme = "README.md"
+# Supported: Python 3.11 and 3.12. 3.13+ is excluded until the later-stage
+# dependencies (Chroma, embedding libraries) are verified on it.
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "python-dotenv>=1.0",  # reads the local .env file; nothing else is needed yet
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+]
+
+[project.scripts]
+domain-rag-copilot = "domain_rag_copilot.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.dynamic]
+version = { attr = "domain_rag_copilot.__version__" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]  # lets `pytest` work even before `pip install -e .`
+addopts = "-ra"
