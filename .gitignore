@@ -25,6 +25,7 @@ var/
 # Real or confidential data (only synthetic files in data/sample/ are committed)
 data/raw/
 data/private/
+Claude_Prompts_Domain_RAG_Copilot.md
 
 # Editors / OS
 .vscode/
